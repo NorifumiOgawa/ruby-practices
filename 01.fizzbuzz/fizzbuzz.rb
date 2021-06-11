@@ -7,4 +7,3 @@
   op = x.to_s if op == ""
   puts op
 end
-
