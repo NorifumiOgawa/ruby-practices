@@ -46,8 +46,7 @@ def listing_option_l(file_list)
     file_path = "#{ARGV[0]}#{file}"
     stat = File.lstat(file_path)
     list_text = "#{file_type(stat.mode)}#{file_permission(stat.mode)}"
-    list_text += '@' if xattr_file_list&.include?(file)
-    list_text += ' ' unless xattr_file_list&.include?(file)
+    list_text += xattr_file_list&.include?(file) && file_type(stat.mode) == '-' ? '@' : ' '
     list_text += "#{stat.nlink.to_s.rjust(3)} "
     list_text += "#{Etc.getpwuid(File.lstat(file_path).uid).name.ljust(max_values[2])} #{Etc.getgrgid(File.lstat(file_path).gid).name.rjust(max_values[3] + 1)}"
     list_text += "#{stat.size.to_s.rjust(max_values[1] + 2)} "
@@ -63,7 +62,7 @@ def listing_option_l(file_list)
 end
 
 def mb_ljust(file_name, width)
-  char_count = file_name.each_char.map { |c| c.bytesize == 1 ? 1 : 2 }.inject(0, &:+)
+  char_count = file_name.each_char.map { |c| c.bytesize == 1 ? 1 : 2 }.inject(0, :+)
   file_name += ' ' * (width - char_count)
   file_name
 end
