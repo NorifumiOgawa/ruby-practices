@@ -21,7 +21,7 @@ def main
     print "#{@result_word_count[i].to_s.rjust(8)}#{@result_byte[i].to_s.rjust(8)}" unless @options['l']
     puts " #{@result_filename[i]}"
   end
-  return unless ARGV.size.positive?
+  return if ARGV.size < 2
 
   print @result_line_count.sum.to_s.rjust(8)
   print "#{@result_word_count.sum.to_s.rjust(8)}#{@result_byte.sum.to_s.rjust(8)}" unless @options['l']
