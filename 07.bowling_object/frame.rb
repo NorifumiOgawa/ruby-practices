@@ -15,9 +15,9 @@ class Frame
   def score
     if @frame_number == 9 # 10フレーム
       @first_shot.score + @second_shot.score + @third_shot.score
-    elsif @first_shot.score == 10 # ストライク
+    elsif @first_shot.score == POINT_STRIKE # ストライク
       @first_shot.score + strike_point
-    elsif @first_shot.score + @second_shot.score == 10 # スペア
+    elsif @first_shot.score + @second_shot.score == POINT_STRIKE # スペア
       @first_shot.score + @second_shot.score + Shot.new(@marks[@frame_number + 1][0]).score
     else # 上記以外は2投の合計
       @first_shot.score + @second_shot.score + @third_shot.score
@@ -31,7 +31,7 @@ class Frame
       Shot.new(@marks[@frame_number + 1][0]).score + Shot.new(@marks[@frame_number + 1][1]).score
     else
       strike_2nd_shot = Shot.new(@marks[@frame_number + 1][0]).score
-      strike_3rd_shot = if strike_2nd_shot == 10
+      strike_3rd_shot = if strike_2nd_shot == POINT_STRIKE
                           Shot.new(@marks[@frame_number + 2][0]).score
                         else
                           Shot.new(@marks[@frame_number + 1][1]).score

@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-class Shot
-  POINT_STRIKE = 10
+POINT_STRIKE = 10
 
+class Shot
   def initialize(mark)
     @mark = mark
   end
