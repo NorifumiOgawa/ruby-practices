@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require './07.bowling_object/frame'
+require_relative 'frame'
 
 class Game
   def initialize(result_marks)
@@ -23,8 +23,8 @@ class Game
 
   def score
     score = 0
-    @marks.each do |mark|
-      frame = Frame.new(mark)
+    @marks.each.with_index(1) do |_mark, i|
+      frame = Frame.new(@marks, i)
       score += frame.score
     end
     score

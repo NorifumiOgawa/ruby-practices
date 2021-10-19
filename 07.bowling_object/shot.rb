@@ -2,8 +2,6 @@
 # frozen_string_literal: true
 
 class Shot
-  # attr_reader :mark
-
   POINT_STRIKE = 10
 
   def initialize(mark)
@@ -16,7 +14,3 @@ class Shot
     @mark.to_i
   end
 end
-
-# shot = Shot.new('X')
-# pp shot.mark
-# pp shot.score
