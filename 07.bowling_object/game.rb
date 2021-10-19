@@ -4,9 +4,7 @@
 require './07.bowling_object/frame'
 
 class Game
-  def initialize
-    result_marks = ARGV[0]
-
+  def initialize(result_marks)
     # マークを配列にする
     marks_array = []
     result_marks.split(',').each do |m|

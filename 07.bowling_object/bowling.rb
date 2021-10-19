@@ -2,6 +2,6 @@
 # frozen_string_literal: true
 
 require './07.bowling_object/game'
-POINT_STRIKE = 10
-game = Game.new
+
+game = Game.new(ARGV[0])
 puts game.score

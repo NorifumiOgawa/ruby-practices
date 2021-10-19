@@ -4,6 +4,8 @@
 class Shot
   # attr_reader :mark
 
+  POINT_STRIKE = 10
+
   def initialize(mark)
     @mark = mark
   end
