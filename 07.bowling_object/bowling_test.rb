@@ -19,26 +19,30 @@ class BowlingTest < Test::Unit::TestCase
 
   def test_frame1
     # 1-9フレームでスペアやストライクがない場合
-    @marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
-    assert_equal 3, Frame.new(@marks, 3).score # 3フレーム
+    marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
+    shots = marks.map { |mark| [Shot.new(mark[0]), Shot.new(mark[1]), Shot.new(mark[2])] }
+    assert_equal 3, AllFrame.new(shots).score(3) # 3フレーム
   end
 
   def test_frame2
     # 10フレーム
-    @marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
-    assert_equal 15, Frame.new(@marks, 10).score # 10フレーム
+    marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
+    shots = marks.map { |mark| [Shot.new(mark[0]), Shot.new(mark[1]), Shot.new(mark[2])] }
+    assert_equal 15, AllFrame.new(shots).score(10) # 10フレーム
   end
 
   def test_frame3
     # スペアをとった場合（次の1投のスコアを加算）
-    @marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
-    assert_equal 20, Frame.new(@marks, 5).score
+    marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
+    shots = marks.map { |mark| [Shot.new(mark[0]), Shot.new(mark[1]), Shot.new(mark[2])] }
+    assert_equal 20, AllFrame.new(shots).score(5)
   end
 
   def test_frame4
     # ストライクをとった場合（次の2投のスコアを加算）
-    @marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
-    assert_equal 20, Frame.new(@marks, 6).score
+    marks = [%w[6 3], %w[9 0], %w[0 3], %w[8 2], %w[7 3], %w[X 0], %w[9 1], %w[8 0], %w[X 0], %w[6 4 5]]
+    shots = marks.map { |mark| [Shot.new(mark[0]), Shot.new(mark[1]), Shot.new(mark[2])] }
+    assert_equal 20, AllFrame.new(shots).score(6)
   end
 
   def test_game1

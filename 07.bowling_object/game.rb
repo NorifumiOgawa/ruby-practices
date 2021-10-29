@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative 'frame'
+require_relative 'all_frame'
+require_relative 'shot'
 
 class Game
   def initialize(result_marks)
@@ -23,9 +24,9 @@ class Game
 
   def score
     score = 0
-    @marks.each.with_index(1) do |_mark, i|
-      frame = Frame.new(@marks, i)
-      score += frame.score
+    shots = @marks.map { |mark| [Shot.new(mark[0]), Shot.new(mark[1]), Shot.new(mark[2])] }
+    shots.each.with_index(1) do |_shot, i|
+      score += AllFrame.new(shots).score(i)
     end
     score
   end
