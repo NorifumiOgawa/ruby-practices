@@ -4,7 +4,6 @@
 require_relative 'shot'
 
 class AllFrame
-  POINT_STRIKE = 10
   def initialize(shots)
     @shots = shots
   end
@@ -17,9 +16,9 @@ class AllFrame
 
     if @frame_number == 9 # 10フレーム
       first_shot + second_shot + third_shot
-    elsif first_shot == POINT_STRIKE # ストライク
+    elsif first_shot == Shot::POINT_STRIKE # ストライク
       first_shot + strike_point
-    elsif first_shot + second_shot == POINT_STRIKE # スペア
+    elsif first_shot + second_shot == Shot::POINT_STRIKE # スペア
       first_shot + second_shot + @shots[@frame_number + 1][0].score
     else # 上記以外は2投の合計
       first_shot + second_shot + third_shot
@@ -33,7 +32,7 @@ class AllFrame
       @shots[@frame_number + 1][0].score + @shots[@frame_number + 1][1].score
     else
       strike_2nd_shot = @shots[@frame_number + 1][0].score
-      strike_3rd_shot = if strike_2nd_shot == POINT_STRIKE
+      strike_3rd_shot = if strike_2nd_shot == Shot::POINT_STRIKE
                           @shots[@frame_number + 2][0].score
                         else
                           @shots[@frame_number + 1][1].score
