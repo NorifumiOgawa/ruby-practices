@@ -28,10 +28,10 @@ class LsOopTest < Test::Unit::TestCase
       drwxr-xr-x  3 ogaworks  staff    96 10 30 11:18 05.ls
       drwxr-xr-x  3 ogaworks  staff    96  7 11 16:19 06.wc
       drwxr-xr-x  8 ogaworks  staff   256 10 30 11:18 07.bowling_object
-      drwxr-xr-x  9 ogaworks  staff   288 11  1 16:37 08.ls_object
+      drwxr-xr-x  7 ogaworks  staff   224 11  9 17:20 08.ls_object
       drwxr-xr-x  3 ogaworks  staff    96  6 10 17:17 09.wc_object
       -rw-r--r--  1 ogaworks  staff  2336  6 10 17:17 README.md
-      -rw-r--r--  1 ogaworks  staff     0 11  1 16:33 小川.txt
+      -rw-r--r--  1 ogaworks  staff     0 11  2 18:31 小川.txt
     TEXT
     result = `ruby ls_oop.rb -l #{TARGET_PATHNAME}`.chomp
     assert_equal expected, result
