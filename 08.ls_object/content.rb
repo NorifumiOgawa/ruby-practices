@@ -26,12 +26,8 @@ class Content
     @file.blocks
   end
 
-  def nlink(option_a, xattr_file_list)
-    if option_a && xattr_file_list.size.positive?
-      "#{@file.nlink.to_s.rjust(3)} "
-    else
-      "#{@file.nlink.to_s.rjust(2)} "
-    end
+  def nlink
+    @file.nlink
   end
 
   def user
@@ -43,7 +39,7 @@ class Content
   end
 
   def size
-    @file.size.to_s
+    @file.size
   end
 
   def mtime
@@ -58,5 +54,9 @@ class Content
   def permission
     permission_numbers = @file.mode.to_s(8)[-3, 3].split('')
     permission_numbers.map { |i| PERMISSIONS[i.to_s] }.join
+  end
+
+  def filename_length
+    @filename.each_char.sum { |c| c.bytesize == 1 ? 1 : 2 }
   end
 end

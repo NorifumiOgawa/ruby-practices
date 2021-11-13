@@ -5,7 +5,7 @@ require_relative 'ls_list'
 class LsOop
   def initialize
     @options = ARGV.getopts('a', 'l', 'r')
-    @list = LsList.new(ARGV[0], @options)
+    @ls_list = LsList.new(ARGV[0], @options)
   end
 
   def self.listing_result
@@ -14,9 +14,9 @@ class LsOop
 
   def listing_result
     if @options['l']
-      puts @list.format_long
+      puts @ls_list.format_long
     else
-      puts @list.format_default
+      puts @ls_list.format_default
     end
   end
 end

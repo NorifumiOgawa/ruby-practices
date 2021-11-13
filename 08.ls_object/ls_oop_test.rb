@@ -7,12 +7,13 @@ class LsOopTest < Test::Unit::TestCase
   TARGET_PATHNAME = Pathname('../')
   def test_ls_a_width80
     expected = <<~TEXT.chomp
-      .                 .rubocop.yml      06.wc
-      ..                01.fizzbuzz       07.bowling_object
-      .DS_Store         02.calendar       08.ls_object
-      .git              03.rake           09.wc_object
-      .gitignore        04.bowling        README.md
-      .mac拡張属性      05.ls             小川.txt
+      .                 01.fizzbuzz       08.ls_object
+      ..                02.calendar       09.wc_object
+      .DS_Store         03.rake           README.md
+      .git              04.bowling        linked.pdf
+      .gitignore        05.ls             小川.txt
+      .mac拡張属性      06.wc
+      .rubocop.yml      07.bowling_object
     TEXT
     result = `ruby ls_oop.rb -a #{TARGET_PATHNAME}`.chomp
     assert_equal expected, result
@@ -31,6 +32,7 @@ class LsOopTest < Test::Unit::TestCase
       drwxr-xr-x  7 ogaworks  staff   224 11  9 17:20 08.ls_object
       drwxr-xr-x  3 ogaworks  staff    96  6 10 17:17 09.wc_object
       -rw-r--r--  1 ogaworks  staff  2336  6 10 17:17 README.md
+      lrwxr-xr-x  1 ogaworks  staff    39 11 13 10:05 linked.pdf -> /Users/ogaworks/desktop/event_guide.pdf
       -rw-r--r--  1 ogaworks  staff     0 11  2 18:31 小川.txt
     TEXT
     result = `ruby ls_oop.rb -l #{TARGET_PATHNAME}`.chomp
@@ -39,10 +41,10 @@ class LsOopTest < Test::Unit::TestCase
 
   def test_ls_r_width80
     expected = <<~TEXT.chomp
-      小川.txt          07.bowling_object 03.rake
+      小川.txt          08.ls_object      04.bowling
+      linked.pdf        07.bowling_object 03.rake
       README.md         06.wc             02.calendar
       09.wc_object      05.ls             01.fizzbuzz
-      08.ls_object      04.bowling
     TEXT
     result = `ruby ls_oop.rb -r #{TARGET_PATHNAME}`.chomp
     assert_equal expected, result
@@ -58,8 +60,8 @@ class LsOopTest < Test::Unit::TestCase
     expected = <<~TEXT.chomp
       01.fizzbuzz       05.ls             09.wc_object
       02.calendar       06.wc             README.md
-      03.rake           07.bowling_object 小川.txt
-      04.bowling        08.ls_object
+      03.rake           07.bowling_object linked.pdf
+      04.bowling        08.ls_object      小川.txt
     TEXT
     result = `ruby ls_oop.rb #{TARGET_PATHNAME}`.chomp
     assert_equal expected, result
