@@ -29,7 +29,7 @@ class LsOopTest < Test::Unit::TestCase
       drwxr-xr-x  3 ogaworks  staff    96 10 30 11:18 05.ls
       drwxr-xr-x  3 ogaworks  staff    96  7 11 16:19 06.wc
       drwxr-xr-x  8 ogaworks  staff   256 10 30 11:18 07.bowling_object
-      drwxr-xr-x  7 ogaworks  staff   224 11  9 17:20 08.ls_object
+      drwxr-xr-x  7 ogaworks  staff   224 11 14 09:30 08.ls_object
       drwxr-xr-x  3 ogaworks  staff    96  6 10 17:17 09.wc_object
       -rw-r--r--  1 ogaworks  staff  2336  6 10 17:17 README.md
       lrwxr-xr-x  1 ogaworks  staff    39 11 13 10:05 linked.pdf -> /Users/ogaworks/desktop/event_guide.pdf

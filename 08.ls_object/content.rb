@@ -5,6 +5,7 @@ require 'etc'
 
 class Content
   PERMISSIONS = { '1' => '--x', '2' => '-w-', '3' => '-wx', '4' => 'r--', '5' => 'r-x', '6' => 'rw-', '7' => 'rwx' }.freeze
+
   TYPE_LIST = {
     '001' => 'p', # FIFO
     '002' => 'c', # character device
@@ -14,7 +15,8 @@ class Content
     '012' => 'l', # symbolic link
     '014' => 's' # socket
   }.freeze
-  attr_reader :filename
+
+  attr_reader :path, :filename
 
   def initialize(path, filename)
     @path = path
@@ -56,7 +58,7 @@ class Content
     permission_numbers.map { |i| PERMISSIONS[i.to_s] }.join
   end
 
-  def filename_length
+  def filename_width
     @filename.each_char.sum { |c| c.bytesize == 1 ? 1 : 2 }
   end
 end
