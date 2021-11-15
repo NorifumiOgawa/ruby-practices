@@ -33,7 +33,7 @@ class LsOopTest < Test::Unit::TestCase
       drwxr-xr-x  3 ogaworks  staff    96  6 10 17:17 09.wc_object
       -rw-r--r--  1 ogaworks  staff  2336  6 10 17:17 README.md
       lrwxr-xr-x  1 ogaworks  staff    39 11 13 10:05 linked.pdf -> /Users/ogaworks/desktop/event_guide.pdf
-      -rw-r--r--  1 ogaworks  staff     0 11  2 18:31 小川.txt
+      -rw-r--r--@ 1 ogaworks  staff     0 11  2 18:31 小川.txt
     TEXT
     result = `ruby ls_oop.rb -l #{TARGET_PATHNAME}`.chomp
     assert_equal expected, result

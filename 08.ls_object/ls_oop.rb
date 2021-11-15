@@ -17,13 +17,13 @@ class LsOop
     sorted_files = @options['r'] ? files.reverse : files
     contents = sorted_files.map { |filename| Content.new(@path, filename) }
     xattr_files_set = build_xattr_files_set(@path) if @options['l']
-    @ls_formatter = LsFormatter.new(contents, @options, xattr_files_set)
+    @ls_formatter = LsFormatter.new(contents, xattr_files_set)
     puts @ls_formatter.format(long: @options['l'])
   end
 
   def build_xattr_files_set(path)
     # Macの拡張属性があるファイルを検索してSetオブジェクトを返す
-    command_result = `xattr #{path}.*`
+    command_result = `xattr #{path}* #{path}.*`
     lists = command_result.split(/\R/)
     filename = lists.map do |list|
       list.split(':')[0].gsub(path, '')
