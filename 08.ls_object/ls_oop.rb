@@ -19,8 +19,7 @@ class LsOop
     files = @options['a'] ? Dir.glob('*', File::FNM_DOTMATCH, base: @path) : Dir.glob('*', base: @path)
     sorted_files = @options['r'] ? files.reverse : files
     contents = sorted_files.map { |filename| Content.new(@path, filename) }
-    xattr_files_set = build_xattr_files_set(@path) if @options['l']
-    @ls_formatter = LsFormatter.new(contents, xattr_files_set)
+    @ls_formatter = LsFormatter.new(contents, build_xattr_files_set(@path))
     puts @ls_formatter.format(long: @options['l'])
   end
 
