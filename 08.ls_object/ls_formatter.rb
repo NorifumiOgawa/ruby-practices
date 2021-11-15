@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'optparse'
-require 'etc'
-require_relative 'content'
-require 'set'
-
 class LsFormatter
   COLUMNS = 3 # 3列表示
 

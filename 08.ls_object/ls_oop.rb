@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'content'
 require_relative 'ls_formatter'
+require 'optparse'
+require 'set'
 
 class LsOop
   def initialize
