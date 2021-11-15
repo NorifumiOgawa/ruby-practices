@@ -59,11 +59,11 @@ class LsFormatter
 
   def build_max_length_table
     {
-      filename: @contents.max_by(&:filename_width).filename_width,
-      filesize: @contents.max_by { |content| content.size.to_s.length }.size.to_s.length,
-      username: @contents.max_by { |content| content.user.length }.user.length,
-      groupname: @contents.max_by { |content| content.group.length }.group.length,
-      nlink: @contents.max_by { |content| content.nlink.to_s.length }.nlink.to_s.length
+      filename: @contents.map(&:filename_width).max,
+      filesize: @contents.map { |content| content.size.to_s.length }.max,
+      username: @contents.map { |content| content.user.length }.max,
+      groupname: @contents.map { |content| content.group.length }.max,
+      nlink: @contents.map { |content| content.nlink.to_s.length }.max
     }
   end
 end
