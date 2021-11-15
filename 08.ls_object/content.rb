@@ -21,40 +21,40 @@ class Content
   def initialize(path, filename)
     @path = path
     @filename = filename
-    @file = File.lstat("#{path}#{filename}")
+    @file_stat = File.lstat("#{path}#{filename}")
   end
 
   def blocks
-    @file.blocks
+    @file_stat.blocks
   end
 
   def nlink
-    @file.nlink
+    @file_stat.nlink
   end
 
   def user
-    Etc.getpwuid(@file.uid).name
+    Etc.getpwuid(@file_stat.uid).name
   end
 
   def group
-    Etc.getgrgid(@file.gid).name
+    Etc.getgrgid(@file_stat.gid).name
   end
 
   def size
-    @file.size
+    @file_stat.size
   end
 
   def mtime
-    @file.mtime
+    @file_stat.mtime
   end
 
   def type
-    type_bit = @file.mode.to_s(8).rjust(7, '0')[0, 3]
+    type_bit = @file_stat.mode.to_s(8).rjust(7, '0')[0, 3]
     TYPE_LIST[type_bit]
   end
 
   def permission
-    permission_numbers = @file.mode.to_s(8)[-3, 3].split('')
+    permission_numbers = @file_stat.mode.to_s(8)[-3, 3].split('')
     permission_numbers.map { |i| PERMISSIONS[i.to_s] }.join
   end
 
