@@ -14,7 +14,7 @@ class LsFormatter
     @xattr_files_set = xattr_files_set
   end
 
-  def format(long:)
+  def format(long: false)
     long ? format_long : format_default
   end
 
