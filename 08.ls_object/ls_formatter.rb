@@ -3,7 +3,7 @@
 class LsFormatter
   COLUMNS = 3 # 3列表示
 
-  def initialize(contents, xattr_files_set = nil)
+  def initialize(contents, xattr_files_set)
     @contents = contents
     @xattr_files_set = xattr_files_set
   end
