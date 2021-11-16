@@ -37,7 +37,7 @@ class LsFormatter
     list_texts = @contents.map do |content|
       blocks += content.blocks
       list_text = "#{content.type}#{content.permission}"
-      list_text += @xattr_files_set&.include?(content.filename) && content.type == '-' ? '@' : ' '
+      list_text += @xattr_files_set.include?(content.filename) && content.type == '-' ? '@' : ' '
       list_text += "#{content.nlink.to_s.rjust(max_length_table[:nlink] + 1)} "
       list_text += content.user.ljust(max_length_table[:username])
       list_text += content.group.rjust(max_length_table[:groupname] + 2)
